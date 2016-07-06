@@ -28,6 +28,24 @@ Excel.prototype.read = function (file, read_opts) {
   }
 };
 
+Excel.prototype.writeFile = function (fileName, read_opts) {
+  if (this.fileType === 'xlsx') {
+    return XLSX.writeFile(this.workbook, fileName, read_opts);
+  }
+  else if (this.fileType == 'xls') {
+    return XLS.writeFile(this.workbook, fileName, read_opts);
+  }
+};
+
+Excel.prototype.write = function (file, read_opts) {
+  if (this.fileType === 'xlsx') {
+    return XLSX.write(this.workbook, read_opts);
+  }
+  else if (this.fileType == 'xls') {
+    return XLS.write(this.workbook, read_opts);
+  }
+};
+
 Excel.prototype.createWorkbook = function () {
   return new Workbook(this.fileType);
 };
